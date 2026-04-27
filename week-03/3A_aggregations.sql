@@ -13,12 +13,22 @@ ORDER BY ProductName
 -- 2. Write a query to find the average price of all items that Northwind sells.
 -- (Bonus: Once you have written a working query, try asking Claude or ChatGPT for help
 -- using the ROUND function to round the average price to the nearest cent.)
-
+SELECT Round(AVG(UnitPrice), 2) AS Average_Price
+FROM products
+-- 28.87
 
 -- 3. Write a query to find the price of the most expensive item that Northwind sells. Then
 -- write a second query to find the name of the product with that price, plus the name of
 -- the supplier for that product.
 
+SELECT ROUND(MAX(UnitPrice), 2) AS Expensive_item -- 263.50
+FROM products
+
+SELECT ProductName, ROUND (UnitPrice, 2)
+FROM products
+WHERE UnitPrice = 263.50
+ORDER BY ProductName
+-- Cte de Blaye
 
 -- 4. Write a query to find total monthly payroll (the sum of all the employees’ monthly
 -- salaries).

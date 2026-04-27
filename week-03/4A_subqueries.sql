@@ -14,13 +14,32 @@ ORDER BY ProductName ASC
 -- 2. What is the product name(s) and categories of the least expensive products?
 -- HINT: Find the min price in a subquery and then use that in your more complex
 -- query that joins products with categories.
+SELECT MIN(UnitPrice) 
+FROM products
 
+SELECT ProductName, CategoryName, UnitPrice
+FROM products
+INNER JOIN categories ON categories.CategoryID = products.CategoryID
+WHERE UnitPrice = 2.5000
+ORDER BY ProductName ASC
+-- Geitost
 
 -- 3. What is the order id, shipping name and shipping address of all orders shipped via
 -- "Federal Shipping"? HINT: Find the shipper id of "Federal Shipping" in a subquery and then use that
 -- value to find the orders that used that shipper. You do not need "Federal Shipping" to display 
 -- in the results.
 
+SELECT *
+FROM shippers
+
+SELECT *
+FROM orders
+
+
+SELECT OrderID, ShipName, ShipAddress
+FROM orders
+WHERE ShipVia = 3
+ORDER BY ShipName ASC
 
 -- 4. What are the order ids of the orders that included "Sasquatch Ale"?
 -- HINT: Find the product id of "Sasquatch Ale" in a subquery and then use that value
