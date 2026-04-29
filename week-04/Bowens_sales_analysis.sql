@@ -29,4 +29,25 @@ FROM management
 SELECT *
 FROM online_sales
 WHERE ShiptoState = 'Maryland'
-ORDER BY Date ASC
+ AND Date LIKE '%2022%'
+ORDER BY Date asc
+
+
+SELECT Year(Date) as Year_Sale, Month(Date) as Month_Sale, SUM(SalesTotal) AS Total_Sales
+FROM online_sales
+WHERE ShiptoState = 'Maryland'
+	BETWEEN Date '2022-02-01' AND '2025-12-31'
+GROUP BY YEAR(Date), MONTH(Date)
+ORDER BY Year_Sale ASC, Month_Sale ASC
+-- Sales per month from ONLINE
+SELECT *
+FROM store_sales
+ORDER BY Transaction_Date DESC
+
+SELECT Year(Transaction_Date) as Year_Sale, Month(Transaction_Date) as Month_Sale, SUM(Sale_Amount) AS Total_Sales
+FROM store_sales
+WHERE Store_ID BETWEEN '731' AND '739'
+GROUP BY YEAR(Transaction_Date), MONTH(Transaction_Date)
+ORDER BY Year_Sale ASC, Month_Sale ASC
+-- Sales per month from store_sales
+
